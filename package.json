@@ -1,7 +1,14 @@
 {
   "name": "waecg",
+  "type": "module",
+  "scripts": {
+    "build": "npm run build:graphics && npm run build:dashboard",
+    "build:graphics": "vite build --config vite.graphics.config.js",
+    "build:dashboard": "vite build --config vite.dashboard.config.js"
+  },
   "dependencies": {
     "nodecg": "^2.8.0",
+    "three": "^0.185.1",
     "two.js": "^0.8.23"
   },
   "nodecg": {
@@ -67,5 +74,11 @@
         "height": 1080
       }
     ]
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "glob": "^13.0.6",
+    "tailwindcss": "^4.3.3",
+    "vite": "^8.2.2"
   }
 }
