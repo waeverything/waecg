@@ -1,0 +1,71 @@
+{
+  "name": "waecg",
+  "dependencies": {
+    "nodecg": "^2.8.0",
+    "two.js": "^0.8.23"
+  },
+  "nodecg": {
+    "compatibleRange": ">=2.8",
+    "assetCategories": [
+      {
+        "name": "intermission-logo",
+        "title": "Intermission Logo",
+        "allowedTypes": [
+          "png",
+          "jpg",
+          "jpeg",
+          "svg",
+          "webp"
+        ]
+      }
+    ],
+    "dashboardPanels": [
+      {
+        "name": "clock",
+        "title": "Clock",
+        "width": 2,
+        "file": "clock.html"
+      },
+      {
+        "name": "schedule",
+        "title": "Schedule",
+        "width": 4,
+        "file": "schedule.html"
+      },
+      {
+        "name": "toasts",
+        "title": "Toasts",
+        "width": 4,
+        "file": "toasts.html"
+      },
+      {
+        "name": "widget",
+        "title": "Widget",
+        "width": 2,
+        "file": "widget.html"
+      }
+    ],
+    "graphics": [
+      {
+        "file": "schedule.html",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "file": "toasts.html",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "file": "intermission.html",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "file": "widget.html",
+        "width": 1920,
+        "height": 1080
+      }
+    ]
+  }
+}

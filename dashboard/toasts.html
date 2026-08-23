@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="utf-8">
+      <title>Toasts</title>
+      <link rel="stylesheet" href="./css/styles.css">
+      <script src="./js/toasts.js" type="module"></script>
+      <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    </head>
+<body class="p-4">
+  <div class="flex flex-col gap-4">
+    <div class="flex gap-4">
+      <div class="flex flex-col gap-2 w-full">
+        <h1 class="font-bold">Left</h1>
+        <input class="rounded w-full p-2 bg-light border-white outline-sky-600 outline-2 focus:outline focus:bg-dark" type="text" placeholder="Title" />
+        <input class="rounded w-full p-2 bg-light border-white outline-sky-600 outline-2 focus:outline focus:bg-dark" type="text" placeholder="Subtitle" />
+      </div>
+      <div class="flex flex-col gap-2 w-full">
+        <h1 class="font-bold">Right</h1>
+        <input class="rounded w-full p-2 bg-light border-white outline-sky-600 outline-2 focus:outline focus:bg-dark" type="text" placeholder="Title" />
+        <input class="rounded w-full p-2 bg-light border-white outline-sky-600 outline-2 focus:outline focus:bg-dark" type="text" placeholder="Subtitle" />
+      </div>
+    </div>
+    <div class="flex gap-1">
+      <button data-show="left" class="bg-sky-600 p-2 rounded-l basis-full hover:bg-sky-400">Show left</button>
+      <button data-show="both" class="bg-sky-600 p-2 basis-full hover:bg-sky-400">Show both</button>
+      <button data-show="right" class="bg-sky-600 p-2 rounded-r basis-full hover:bg-sky-400">Show right</button>
+    </div>
+    <div class="flex flex-col gap-2">
+      <h1 class="font-bold">Bottom</h1>
+      <input class="rounded w-full p-2 bg-light border-white outline-sky-600 outline-2 focus:outline focus:bg-dark" type="text" placeholder="Bottom panel text" id="bottomToastContent" name="bottomToastContent" />
+      <button data-show="bottom" class="block bg-sky-600 p-2 rounded hover:bg-sky-400">Show bottom</button>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    @apply bg-mid;
+    @apply text-white;
+}
+
+.grid-cols-schedule {
+    grid-template-columns: 1fr 3fr;
+}
