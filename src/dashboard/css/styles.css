@@ -1,0 +1,5 @@
+@import "tailwindcss";
+
+.grid-cols-schedule {
+    grid-template-columns: 1fr 3fr;
+}
