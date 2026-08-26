@@ -6,20 +6,18 @@
     <link rel="stylesheet" href="./css/styles.css">
     <script src="./js/schedule.js" type="module"></script>
   </head>
-  <body class="m-0!">
-    <div class="p-4 flex flex-col gap-4">
-      <ul id="activityList" class="flex flex-col gap-2 cursor-pointer"></ul>
-      <button id="addButton" class="text-slate-300 cursor-pointer hover:text-sky-500"><i class="fa-solid fa-plus"></i> Add more</button>
-      <button id="updateButton" class="p-4 cursor-pointer rounded bg-sky-600 font-bold hover:bg-sky-500">Update</button>
+  <body class="m-4! flex flex-col gap-4">
+    <ul id="activityList" class="flex flex-col gap-2 cursor-pointer"></ul>
+    <button id="addButton" class="text-slate-300 cursor-pointer hover:text-sky-500"><i class="fa-solid fa-plus"></i> Add more</button>
+    <button id="updateButton" class="p-4 cursor-pointer rounded bg-sky-600 font-bold hover:bg-sky-500">Update</button>
 
-      <template id="template">
-        <li class="flex gap-2 items-center">
-          <i data-action="drag" class="fa-solid fa-grip-vertical cursor-grab fa-lg text-slate-500"></i>
-          <input type="text" data-field="time" placeholder="Time" class="p-2 border-2 border-slate-500 rounded w-1/2" />
-          <input type="text" data-field="activity" placeholder="Activity" class="p-2 border-2 border-slate-500 rounded w-full" />
-          <button data-action="delete" class="cursor-pointer text-slate-500 hover:text-red-500"><i class="fa-solid fa-trash fa-lg"></i></button>
-        </li>
-      </template>
-    </div>
+    <template id="template">
+      <li class="flex gap-2 items-center">
+        <i data-action="drag" class="fa-solid fa-grip-vertical cursor-grab fa-lg text-slate-500"></i>
+        <input type="text" data-field="time" placeholder="Time" class="p-2 border-2 border-slate-500 rounded w-1/2" />
+        <input type="text" data-field="activity" placeholder="Activity" class="p-2 border-2 border-slate-500 rounded w-full" />
+        <button data-action="delete" class="cursor-pointer text-slate-500 hover:text-red-500"><i class="fa-solid fa-trash fa-lg"></i></button>
+      </li>
+    </template>
   </body>
 </html>
