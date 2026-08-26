@@ -1,31 +1,22 @@
-const scheduleReplicant = nodecg.Replicant("schedule");
-const tableCells = document.querySelectorAll("td");
-
-scheduleReplicant.on("change", (newValue) => {
-  if (newValue == undefined) {
-    return;
-  }
-
-  for (let index = 0; index < newValue.length; index++) {
-    const pair = newValue[index];
-
-    tableCells[index * 2].textContent = pair[0];
-    tableCells[index * 2 + 1].textContent = pair[1];
-  }
+const replicant = nodecg.Replicant("schedule", {
+  defaultValue: []
 });
 
-// Clock
-const clockDisplay = document.getElementById("clock");
+const schedule = document.getElementById("schedule");
+const template = document.getElementById("template");
+const clock = document.getElementById("clock");
 
-function showTime() {
-  const date = new Date();
+replicant.on("change", (value) => {
+  schedule.replaceChildren(
+    ...value.map(({ time, activity }) => {
+      const clone = template.content.cloneNode(true);
+      clone.querySelector('[data-field="time"]').textContent = time;
+      clone.querySelector('[data-field="activity"]').textContent = activity;
+      return clone;
+    })
+  );
+});
 
-  if (clockDisplay === null) {
-    return;
-  }
-
-  clockDisplay.textContent = date.toLocaleTimeString("sw-SE");
-  setTimeout(showTime, 1000);
-}
-
-showTime();
+setInterval(() => {
+  clock.textContent = new Date().toLocaleTimeString("sw-SE");
+}, 1000);

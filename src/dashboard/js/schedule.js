@@ -1,45 +1,60 @@
-const scheduleReplicant = nodecg.Replicant("schedule");
+import { library, dom } from "@fortawesome/fontawesome-svg-core";
+import {
+  faTrash,
+  faGripVertical,
+  faPlus,
+} from "@fortawesome/free-solid-svg-icons";
+import Sortable from "sortablejs";
 
-const button = document.getElementById("updateButton");
-const inputRows = getInputRows();
+//Icons
+library.add(faTrash, faGripVertical, faPlus);
+dom.watch();
 
-button.addEventListener("click", updateSchedule);
-
-function updateSchedule() {
-  const scheduleEntries = [];
-  for (let row of inputRows) {
-    scheduleEntries.push([row.leftInput.value, row.rightInput.value])
-  }
-
-  scheduleReplicant.value = scheduleEntries;
-}
-
-function getInputRows() {
-  const inputs = Array.from(document.querySelectorAll("input"));
-
-  let rows = [];
-  for (let i = 0; i < inputs.length; i += 2) {
-    rows.push({ leftInput: inputs[i], rightInput: inputs[i + 1]})
-  }
-
-  return rows;
-}
-
-scheduleReplicant.on('change', (newValue) => {
-  // The value is null on new NodeCG instances
-  if (newValue == undefined) {
-    return;
-  }
-
-  if (newValue.length !== inputRows.length) {
-    console.error("The length of schedule entries does not match the number of input rows.");
-    return;
-  }
-
-  for (let index = 0; index < newValue.length; index++) {
-    const row = inputRows[index];
-    const entry = newValue[index];
-    row.leftInput.value = entry?.[0] ?? '';
-    row.rightInput.value = entry?.[1] ?? '';
-  }
+const replicant = nodecg.Replicant("schedule", {
+  defaultValue: [],
 });
+
+const addButton = document.getElementById("addButton");
+const updateButton = document.getElementById("updateButton");
+
+const activityList = document.getElementById("activityList");
+const template = document.getElementById("template");
+
+new Sortable(activityList, {
+  animation: 150,
+  handle: '[data-action="drag"]',
+});
+
+addButton.addEventListener("click", () => {
+  const now = new Date();
+  now.setMinutes(0, 0, 0);
+  now.setHours(now.getHours() + 1);
+  activityList.appendChild(create(now.toTimeString().slice(0, 5), ""));
+});
+
+updateButton.addEventListener("click", () => {
+  replicant.value = [...activityList.querySelectorAll("li")].map(row => ({
+    time: row.querySelector('[data-field="time"]').value,
+    activity: row.querySelector('[data-field="activity"]').value,
+  }));
+  updateButton.textContent = "Update sent"
+  setTimeout(() => updateButton.textContent = "Update", 1000);
+});
+
+activityList.addEventListener("click", (event) => {
+  const button = event.target.closest('[data-action="delete"]');
+  button?.closest("li").remove();
+});
+
+replicant.on("change", (value) => {
+  activityList.replaceChildren(
+    ...value.map(({ time, activity }) => create(time, activity)),
+  );
+});
+
+function create(time, activity) {
+  const clone = template.content.cloneNode(true);
+  clone.querySelector('[data-field="time"]').value = time;
+  clone.querySelector('[data-field="activity"]').value = activity;
+  return clone;
+}
