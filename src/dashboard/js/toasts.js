@@ -1,48 +1,37 @@
-// NodeCG
-const toastsReplicant = nodecg.Replicant("toasts");
+const replicant = nodecg.Replicant("toasts");
 
-const inputs = document.querySelectorAll("input");
+const leftTitleInput = document.getElementById("leftTitleInput");
+const leftSubtitleInput = document.getElementById("leftSubtitleInput");
+const rightTitleInput = document.getElementById("rightTitleInput");
+const rightSubtitleInput = document.getElementById("rightSubtitleInput");
+const bottomInput = document.getElementById("bottomInput");
 
-document.querySelectorAll("button").forEach((button) => {
-  button.addEventListener("click", function (event) {
-    const data = {
+document.querySelectorAll("button[data-show]").forEach(button => {
+  button.addEventListener("click", () => {
+    replicant.value = {
       leftToast: {
-        title: inputs[0].value,
-        subtitle: inputs[1].value,
+        title: leftTitleInput.value,
+        subtitle: leftSubtitleInput.value,
       },
       rightToast: {
-        title: inputs[2].value,
-        subtitle: inputs[3].value,
+        title: rightTitleInput.value,
+        subtitle: rightSubtitleInput.value,
       },
-      bottomToast: inputs[4].value.split(";"),
-      show: event.target.dataset.show,
+      bottomToast: bottomInput.value.split(";"),
+      show: button.dataset.show,
     };
-
-    toastsReplicant.value = data;
   });
 });
 
-toastsReplicant.on("change", (newValue) => {
-  // The value is null on new NodeCG instances
-  if (newValue == undefined) {
+replicant.on("change", value => {
+  // The value is undefined on new NodeCG instances
+  if (value == undefined) {
     return;
   }
 
-  // Left
-  if (newValue.leftToast != undefined) {
-    inputs[0].value = newValue.leftToast.title || "";
-    inputs[1].value = newValue.leftToast.subtitle || "";
-  }
-
-  // Right
-  if (newValue.rightToast != undefined) {
-    inputs[2].value = newValue.rightToast.title || "";
-    inputs[3].value = newValue.rightToast.subtitle || "";
-  }
-
-  // Bottom
-  const bottomToastItems = newValue.bottomToast;
-  if (bottomToastItems != undefined) {
-    inputs[4].value = bottomToastItems.join(";");
-  }
+  leftTitleInput.value = value.leftToast?.title || "";
+  leftSubtitleInput.value = value.leftToast?.subtitle || "";
+  rightTitleInput.value = value.rightToast?.title || "";
+  rightSubtitleInput.value = value.rightToast?.subtitle || "";
+  bottomInput.value = value.bottomToast?.join(";") || "";
 });

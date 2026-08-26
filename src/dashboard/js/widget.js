@@ -1,17 +1,15 @@
-const widgetReplicant = nodecg.Replicant("widget");
-
+const replicant = nodecg.Replicant("widget", {
+  defaultValue: []
+});
 const textArea = document.getElementById("texts");
 const updateButton = document.getElementById("updateButton");
 
 updateButton.addEventListener("click", () => {
-  const texts = textArea.value.split("\n");
-  widgetReplicant.value = texts;
+  replicant.value = textArea.value.split("\n");
+  updateButton.textContent = "Update sent"
+  setTimeout(() => updateButton.textContent = "Update", 1000);
 });
 
-widgetReplicant.on("change", (newValue) => {
-  if (newValue == undefined) {
-    return;
-  }
-
-  textArea.value = newValue.join("\n");
+replicant.on("change", value => {
+  textArea.value = value.join("\n");
 });
