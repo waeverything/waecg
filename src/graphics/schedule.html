@@ -4,25 +4,24 @@
     <meta charset="utf-8" />
     <title>Schedule</title>
 
-    <link rel="stylesheet" href="./css/base.css" />
-    <link rel="stylesheet" href="./css/schedule.css" />
-
-    <script src="./js/schedule.js" type="module"></script>
+    <link rel="stylesheet" href="./css/schedule.css">
   </head>
   <body>
-    <div class="left">
-      <img class="logo" src="assets/wae-logo+wordmark.svg" alt="" />
+    <div class="panel">
+      <img id="logo" src="assets/wae-logo+wordmark.svg" alt="" />
+      <div class="schedule">
+        <h1>Aikataulu</h1>
+        <table id="schedule" align="left"></table>
+      </div>
       <div id="clock"></div>
     </div>
-    <div class="right">
-      <h1>Aikataulu</h1>
-      <table id="schedule"></table>
-      <template id="template">
-        <tr>
-          <td data-field="time"></td>
-          <td data-field="activity"></td>
-        </tr>
-      </template>
-    </div>
+    <template id="template">
+      <tr>
+        <td data-field="time"></td>
+        <td data-field="activity"></td>
+      </tr>
+    </template>
+    <script src="./js/schedule.js" type="module"></script>
+    <script src="./js/logo.js" type="module"></script>
   </body>
 </html>

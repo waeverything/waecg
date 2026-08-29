@@ -1,49 +1,50 @@
+@import '@fontsource/alata';
+
 body {
-    background: url('../assets/background.svg') center / cover;
-    background-attachment: fixed;
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 1rem;
+    background: url('../assets/terrain.svg') center / cover;
+    font-family: 'Alata', sans-serif;
+    height: 100dvh;
+    display: flex;
+    justify-content: flex-end;
+    margin: 0;
+    color: white;
 }
 
-.logo {
-    width: 35vw;
-    /* transform: translateX(-3%) translateY(-12.5%); */
-    transform: translateX(-5%) translateY(-12.5%);
-}
-
-table td:nth-child(odd) {
-    color: var(--clr-primary);
-    padding-right: 1rem;
-    text-align: end;
-}
-
-.left, .right {
+.panel {
     display: flex;
     flex-direction: column;
-}
-
-/* Left side */
-.left {
-    justify-content: space-between;
-}
-
-/* Right side */
-.right {
-    font-size: 2.5rem;
-    justify-content: center;
-    gap: 2rem;
-}
-
-#clock {
-    font-size: 5rem;
+    background-color: rgba(0,0,0,.25);
 }
 
 h1 {
-    border-bottom: var(--clr-primary) 0.5rem solid;
+    font-size: 4rem;
+    margin: 0;
 }
 
-table {
-    border-spacing: 1rem;
-    border-collapse: separate;
+img {
+    max-width: 100%;
+    padding: 2rem;
+}
+
+.schedule {
+    padding-inline: 2rem;
+}
+
+#schedule {
+    font-size: 2rem;
+}
+
+td:nth-of-type(odd) {
+    color: #04c2ff;
+    padding-right: 1rem;
+}
+
+#clock {
+    margin-top: auto;
+    font-size: 4rem;
+    text-align: center;
+    background-color: rgba(0,0,0,.25);
+    padding-inline: 2rem;
+    padding-block: 1rem;
+    border-top-left-radius: 2rem;
 }
